@@ -10,8 +10,7 @@ var tableData = data;
 // Get a reference to the table body
 var tbody = d3.select("tbody");
 
-
-//We will insert the info to the table, creating all the rows needed per dictionary in the data
+//We will create a funtion that create a table with the rows needed per dictionary in the data and insert the values on it
 function table(dataSet){
   tbody.html("")
     dataSet.forEach((element) => {
@@ -23,6 +22,7 @@ function table(dataSet){
     });
 };
 
+//We will create and insert the data for the whole data base
 table(tableData)
 
 
@@ -31,40 +31,26 @@ table(tableData)
 
   // Select the button
 var button = d3.select("#filter-btn");
-
-   // Create event handler 
+  // Create event handler 
 button.on("click", runEnter);
 
   // Complete the event handler function for the form
 function runEnter() {
-
     // Prevent the page from refreshing
     d3.event.preventDefault();
-    
     // Select the input element and get the raw HTML node
     var inputElement = d3.select("#datetime");
-  
     // Get the value property of the input element
     var inputValue = inputElement.property("value"); 
-
     //print the date selected   
     console.log(inputValue);
-
     //filter the tableData with the date selected 
-    var filteredData = tableData.filter(element => element.datetime === inputValue);
-    
+    var filteredData = tableData.filter(element => element.datetime === inputValue); 
     //print the filtered data
     console.log(filteredData);
-    table(filteredData)
-
-  // //create a table for the filtered data, if there is no data selected, return the complete table data
-  //   if (filteredData.length===0){
-  //     table(tableData);
-  //     } 
-  //   else { 
-  //     table(filteredData);
-  //   }
-       
+    //using the function table, we create a table and insert the values of the filteredData
+    table(filteredData);
+      
   };
 
 
