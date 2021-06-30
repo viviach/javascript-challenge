@@ -29,10 +29,14 @@ table(tableData)
 //2. Use a date form in your HTML document and write JavaScript code that will listen for events 
 // search through the date/time column to find rows that match user input.
 
-  // Select the button
-var button = d3.select("#filter-btn");
-  // Create event handler 
-button.on("click", runEnter);
+// Select the button
+ var button = d3.select("#filter-btn");
+ // Create event handler 
+ button.on("click", runEnter);
+
+ //if we want to use form instead of button
+// var form=d3.select("#datetime");
+// form.on("change", runEnter);
 
   // Complete the event handler function for the form
 function runEnter() {
@@ -49,9 +53,17 @@ function runEnter() {
     //print the filtered data
     console.log(filteredData);
     //using the function table, we create a table and insert the values of the filteredData
-    table(filteredData);
+    //table(filteredData);
+
+    if (inputValue){
+      table(filteredData)
+    }else{
+      table(tableData);
+    }
       
   };
+
+
 
 
 
